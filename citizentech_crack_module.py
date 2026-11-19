@@ -38,7 +38,7 @@ class CrackDetector:
         self.device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
         ck = torch.load(str(ckpt_path), map_location="cpu")
         self.arch, self.size = ck["arch"], int(ck["img_size"])
-        self.threshold = float(threshold if threshold is not None else ck["threshold"])
+        self.threshold = float(threshold if threshold is not None else 0.60)
         self.model = _build(self.arch)
         self.model.load_state_dict(ck["state_dict"])
         self.model.to(self.device).eval()
