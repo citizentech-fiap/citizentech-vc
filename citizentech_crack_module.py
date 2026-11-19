@@ -93,7 +93,8 @@ class CrackDetector:
         cv2.putText(out, bar, (8, 21), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1, cv2.LINE_AA)
         return out
 
-    def process_video(self, src, dst, tile=227, frame_stride=1, max_frames=None, fps_out=None):
+    def process_video(self, src, dst, tile=227, frame_stride=1, max_frames=None, fps_out=None,
+                      progress_callback=None):
         """Processa um vídeo (ou sequência) e grava o vídeo anotado. Devolve estatísticas de desempenho."""
         cap = cv2.VideoCapture(str(src))
         if not cap.isOpened():
@@ -101,6 +102,9 @@ class CrackDetector:
         fps_in = cap.get(cv2.CAP_PROP_FPS) or 10.0
         W, H = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         writer = cv2.VideoWriter(str(dst), cv2.VideoWriter_fourcc(*"mp4v"), fps_out or fps_in, (W, H))
+        if not writer.isOpened():
+            cap.release()
+            raise IOError(f"não foi possível criar o vídeo de saída {dst}")
         i, n_proc, t_inf, last, log = 0, 0, 0.0, [], []
         t_all = time.perf_counter()
         while True:
@@ -117,6 +121,8 @@ class CrackDetector:
                         "prob_max": max([d["prob"] for d in last], default=0.0)})
             writer.write(self.annotate_frame(fr, last))
             i += 1
+            if progress_callback is not None:
+                progress_callback(i)
         cap.release()
         writer.release()
         total = time.perf_counter() - t_all
