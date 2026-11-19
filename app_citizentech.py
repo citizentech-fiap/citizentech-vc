@@ -12,7 +12,8 @@ st.title("CitizenTech · Triagem visual de fissuras em concreto")
 st.caption("Apoio à triagem de locais para inspeção. A presença de fissura na imagem, isoladamente, "
            "não determina a gravidade do dano nem a segurança estrutural.")
 
-ckpt = st.sidebar.text_input("Checkpoint do modelo", "crack_model.pt")
+default_ckpt = Path(__file__).resolve().parent / "crack_model.pt"
+ckpt = st.sidebar.text_input("Checkpoint do modelo", str(default_ckpt))
 if not Path(ckpt).exists():
     st.error(f"Arquivo '{ckpt}' não encontrado. Coloque o crack_model.pt na mesma pasta do app.")
     st.stop()
