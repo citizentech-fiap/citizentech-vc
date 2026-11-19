@@ -1,0 +1,179 @@
+{
+  "data": {
+    "avail_neg": 20000,
+    "avail_pos": 20000,
+    "sample": 6000
+  },
+  "split": {
+    "imagens": {
+      "treino": 4141,
+      "validação": 1086,
+      "teste": 773
+    },
+    "com fissura": {
+      "treino": 2048,
+      "validação": 483,
+      "teste": 469
+    },
+    "sem fissura": {
+      "treino": 2093,
+      "validação": 603,
+      "teste": 304
+    },
+    "grupos": {
+      "treino": 139,
+      "validação": 31,
+      "teste": 30
+    },
+    "% fissura": {
+      "treino": 49.5,
+      "validação": 44.5,
+      "teste": 60.7
+    }
+  },
+  "train": {
+    "arch": "mobilenet_v3_small",
+    "seconds": 191.69406175613403,
+    "best_epoch": 7,
+    "epochs": 8
+  },
+  "metrics": {
+    "thr": 0.3052607476711273,
+    "test_05": {
+      "thr": 0.5,
+      "acc": 0.9974126778783958,
+      "precision": 1.0,
+      "recall": 0.9957356076759062,
+      "f1": 0.9978632478632479,
+      "tn": 304,
+      "fp": 0,
+      "fn": 2,
+      "tp": 467
+    },
+    "test_thr": {
+      "thr": 0.3052607476711273,
+      "acc": 0.9987063389391979,
+      "precision": 1.0,
+      "recall": 0.997867803837953,
+      "f1": 0.9989327641408752,
+      "tn": 304,
+      "fp": 0,
+      "fn": 1,
+      "tp": 468
+    },
+    "auc": 1.0,
+    "val_thr": {
+      "thr": 0.3052607476711273,
+      "acc": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tn": 603,
+      "fp": 0,
+      "fn": 0,
+      "tp": 483
+    }
+  },
+  "error_table": [
+    {
+      "resultado": "FN (fissura perdida)",
+      "n": 1,
+      "brilho_medio": 178.52999877929688,
+      "contraste_medio": 14.890000343322754,
+      "textura_medio": 41.470001220703125,
+      "prob_media": 0.2199999988079071
+    },
+    {
+      "resultado": "TN (acerto: sem fissura)",
+      "n": 304,
+      "brilho_medio": 181.30999755859375,
+      "contraste_medio": 9.119999885559082,
+      "textura_medio": 21.940000534057617,
+      "prob_media": 0.0
+    },
+    {
+      "resultado": "TP (acerto: fissura)",
+      "n": 468,
+      "brilho_medio": 161.89999389648438,
+      "contraste_medio": 29.829999923706055,
+      "textura_medio": 120.51000213623047,
+      "prob_media": 0.9900000095367432
+    }
+  ],
+  "n_fp": 0,
+  "n_fn": 1,
+  "bench": [
+    {
+      "arquitetura": "mobilenet_v3_small",
+      "dispositivo": "cpu",
+      "params_M": 1.52,
+      "lat_media_ms": 10.24,
+      "lat_p95_ms": 11.81,
+      "imgs_por_s_lote32": 190.8,
+      "F1_teste": 0.9989
+    },
+    {
+      "arquitetura": "mobilenet_v3_small",
+      "dispositivo": "cuda",
+      "params_M": 1.52,
+      "lat_media_ms": 5.82,
+      "lat_p95_ms": 7.29,
+      "imgs_por_s_lote32": 3187.3,
+      "F1_teste": 0.9989
+    },
+    {
+      "arquitetura": "mobilenet_v3_large",
+      "dispositivo": "cpu",
+      "params_M": 4.2,
+      "lat_media_ms": 27.29,
+      "lat_p95_ms": 35.65,
+      "imgs_por_s_lote32": 35.1,
+      "F1_teste": NaN
+    },
+    {
+      "arquitetura": "mobilenet_v3_large",
+      "dispositivo": "cuda",
+      "params_M": 4.2,
+      "lat_media_ms": 7.51,
+      "lat_p95_ms": 9.48,
+      "imgs_por_s_lote32": 1398.9,
+      "F1_teste": NaN
+    },
+    {
+      "arquitetura": "resnet18",
+      "dispositivo": "cpu",
+      "params_M": 11.18,
+      "lat_media_ms": 74.95,
+      "lat_p95_ms": 199.18,
+      "imgs_por_s_lote32": 18.7,
+      "F1_teste": 0.9979
+    },
+    {
+      "arquitetura": "resnet18",
+      "dispositivo": "cuda",
+      "params_M": 11.18,
+      "lat_media_ms": 3.8,
+      "lat_p95_ms": 4.81,
+      "imgs_por_s_lote32": 1079.1,
+      "F1_teste": 0.9979
+    }
+  ],
+  "hw": {
+    "cpu": "Intel(R) Xeon(R) CPU @ 2.00GHz",
+    "gpu": "Tesla T4",
+    "n_cpu": 2,
+    "img_size": 224,
+    "threads": 1
+  },
+  "e2e_ms": 8.648747029999413,
+  "video": {
+    "frames": 76,
+    "frames_processados": 76,
+    "tempo_total_s": 1.2675724510002055,
+    "fps_pipeline": 59.95712508585253,
+    "ms_inferencia_por_quadro": 9.604145052614848,
+    "fps_inferencia": 104.12170937877886,
+    "resolucao": "1134x680",
+    "dispositivo": "cuda"
+  }
+}
